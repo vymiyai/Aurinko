@@ -1,0 +1,16 @@
+<div>
+    <p>
+        This will be the options menu
+    </p>
+    
+    <ul>
+        <li ng-repeat="profile in profiles">
+            <form ng-submit="click(profile.value)">
+                <input ng-model="profileValue" type="hidden" value="wololo" />
+                <input type="submit" value="{{profile.name}} : {{profile.value}}" />
+            </form>
+        </li>
+    </ul>
+    
+    <a href="#/main">GOTO</a>
+</div>
