@@ -148,4 +148,20 @@ fetch the changes and merge them into your project with git.
 
 ## Contact
 
+
+
+
+
+
+
+
+
+
+
+
 For more information on AngularJS please check out http://angularjs.org/
+=======
+Aurinko
+=======
+
+Playing with state machines
