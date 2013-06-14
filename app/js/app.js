@@ -5,6 +5,8 @@
 angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers']).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/main', {templateUrl: 'partials/Main.html', controller: 'MainController'});
-        $routeProvider.when('/options', {templateUrl: 'partials/Options.html', controller: 'OptionsController'});
+        $routeProvider.when('/new_game', {templateUrl: 'partials/Profiles.html', controller: 'NewGameController'});
+        $routeProvider.when('/load_profile', {templateUrl: 'partials/Profiles.html', controller: 'LoadProfileController'});
+        $routeProvider.when('/escave', {templateUrl: 'partials/Escave.html'});
         $routeProvider.otherwise({redirectTo: '/main'});
     }]);
