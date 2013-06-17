@@ -15,4 +15,11 @@ angular.module('myApp.services', []).
         return [    {'name':'profile 1', 'value':'1'},
                     {'name':'profile 2', 'value':'2'},
                     {'name':'profile 3', 'value':'3'} ];
+    }).
+    service('ProfileHandler', function(){
+        return {    "loadProfile" : function(id)
+                    { 
+                        alert( "loading profile " + id ); 
+                    } 
+                };
     });
