@@ -24,4 +24,7 @@ angular.module('myApp.controllers', [])
         $scope.profiles = profiles;
         $scope.click = function( profileValue ){ alert( "Will load profile number " + profileValue ); };
         $scope.bottomButton = {"link":"#/main", "label":"Back"};
+    }])
+    .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
+        alert( JSON.stringify(characterCards) );
     }]);

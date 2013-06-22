@@ -33,4 +33,17 @@ angular.module('myApp.services', []).
                         window.localStorage.clear();
                     }
                 };
+    }).
+    service('CharacterCards', [ 'ItemCards', function( itemCards ){
+        return {    'character1': {'name':'character 1', 'cards':[ itemCards["card1"] ]},
+                    'character2': {'name':'character 2', 'cards':[ itemCards["card1"], itemCards["card2"] ]},
+                    'character3': {'name':'character 3', 'cards':[ itemCards["card1"], itemCards["card2"], itemCards["card3"] ]}  };
+    } ] ).
+    service('ItemCards', function(){
+        return {    "card1": {'name':'card 1', 'value':'1'},
+                    "card2": {'name':'card 2', 'value':'2'},
+                    "card3": {'name':'card 3', 'value':'3'} };
     });
+    
+    
+    

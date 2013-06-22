@@ -17,10 +17,12 @@ function Event()
             var finished = true;
             var index;
             var finishConditionsLength = this.finishConditions.length;
+            /*
             for( index = 0; index < finishConditionsLength; index++ )
             {
                 
             }
+            */
         }
     };
     
