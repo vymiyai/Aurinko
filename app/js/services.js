@@ -40,9 +40,19 @@ angular.module('myApp.services', []).
                     'character3': {'name':'character 3', 'cards':[ itemCards["card1"], itemCards["card2"], itemCards["card3"] ]}  };
     } ] ).
     service('ItemCards', function(){
-        return {    "card1": {'name':'card 1', 'value':'1'},
-                    "card2": {'name':'card 2', 'value':'2'},
+        return {    "Medic Kit": {'name':'Medic Kit', 'value':'1'},
+                    "8mm Mauser Clip": {'name':'8mm Mauser Clip', 'value':'2'},
                     "card3": {'name':'card 3', 'value':'3'} };
+    }).
+    service('WeaponCards', function(){
+        return {    "Karabiner 98k": {'name':'Kar98k', 'value':'1'},
+                    "Maschinenpistole 40": {'name':'MP40', 'value':'2'},
+                    "Sturmgewehr 44": {'name':'Stg44', 'value':'3'} };
+    }).
+    service('PerkCards', function(){
+        return {    "Jungle Style": {'name':'Jungle Style', 'description':'Submachine guns and battle rifles reload instantaneously.'},
+                    "Scope": {'name':'Scope', 'description':'Rifles\' accuracy becomes 100%, rate of fire is halved.'},
+                    "Camouflage": {'name':'Camouflage', 'description':'Reduces hit chances by 10%.'} };
     });
     
     

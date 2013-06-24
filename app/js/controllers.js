@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-    .controller('MainController', [ '$scope', function($scope) {
+    .controller('MainMenuController', [ '$scope', function($scope) {
         $scope.quit = function(){ alert("Exit.") };
     }])
     .controller('NewGameController', [ '$scope', "ProfileHandler", function($scope, profileHandler) {
@@ -18,12 +18,12 @@ angular.module('myApp.controllers', [])
         
         
         $scope.click = function( profileValue ){ alert( "Will overwrite profile number " + profileValue ); };
-        $scope.bottomButton = {"link":"#/main", "label":"Back"};
+        $scope.bottomButton = {"link":"#/main_menu", "label":"Back"};
     }])
-    .controller('LoadProfileController', [ '$scope', 'profiles', function($scope, profiles) {
+    .controller('LoadGameController', [ '$scope', 'profiles', function($scope, profiles) {
         $scope.profiles = profiles;
         $scope.click = function( profileValue ){ alert( "Will load profile number " + profileValue ); };
-        $scope.bottomButton = {"link":"#/main", "label":"Back"};
+        $scope.bottomButton = {"link":"#/main_menu", "label":"Back"};
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
         alert( JSON.stringify(characterCards) );
