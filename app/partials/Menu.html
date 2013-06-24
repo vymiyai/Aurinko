@@ -1,11 +1,12 @@
 <div>
     <p>
-        This will be the main menu
+        This will be the Menu template.
     </p>
-    <a href="#/new_game">New Game</a>
-    <br/>
-    <a href="#/load_game">Load Profile</a>
-    <br/>
-    <a href="" ng-click="quit()">Quit</a>
-    <br/>
+    
+    <ul>
+        <li ng-repeat="button in buttons">
+            <a href="{{button.href}}">{{button.value}}</a>
+        </li>
+    </ul>
+    
 </div>

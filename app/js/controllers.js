@@ -4,10 +4,15 @@
 
 angular.module('myApp.controllers', [])
     .controller('MainMenuController', [ '$scope', function($scope) {
-        $scope.quit = function(){ alert("Exit.") };
+        // define buttons for the menu.
+        $scope.buttons = [  { value:"New Game",   href:"#/new_game" },
+                            { value:"Load Game",  href:"#/load_game" },
+                            { value:"Quit",       href:"#" } ];
     }])
     .controller('NewGameController', [ '$scope', "ProfileHandler", function($scope, profileHandler) {
         $scope.profileHandler = profileHandler;
+        
+        
         /*
         window.localStorage.setItem("key", JSON.stringify( { "name":"_name", "value":"_value"} ) );
         var value = window.localStorage.getItem("key");
