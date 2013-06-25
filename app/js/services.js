@@ -12,9 +12,9 @@ angular.module('myApp.services', []).
         return {"wololo":"wololo"};
     }).
     service('Profiles', function(){
-        return [    {'name':'profile 1', 'value':'1'},
-                    {'name':'profile 2', 'value':'2'},
-                    {'name':'profile 3', 'value':'3'} ];
+        return [    JSON.parse( window.localStorage.getItem( "Profile 1" ) ),
+                    JSON.parse( window.localStorage.getItem( "Profile 2" ) ),
+                    JSON.parse( window.localStorage.getItem( "Profile 3" ) ) ];
     }).
     service('Profile', function(){
         var profileId = "0";

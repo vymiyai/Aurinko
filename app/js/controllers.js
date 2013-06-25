@@ -9,15 +9,17 @@ angular.module('myApp.controllers', [])
                             { value:"Load Game",  href:"#/load_game" },
                             { value:"Quit",       href:"#" } ];
     }])
-    .controller('NewGameController', [ '$scope', "ProfileHandler", function($scope, profileHandler) {
-        $scope.profileHandler = profileHandler;
+    .controller('NewGameController', [ '$scope', "Profiles", "Profile", function( $scope, profiles, profile ) {
+        $scope.profiles = profiles;
         $scope.button = { value:"Back", href:"#/main_menu" };
+        
+        $scope.submit = function( profileName ){ profile.profileId = profileName; alert( profileName + " will be overwritten." ); };
     }])
     .controller('LoadGameController', [ '$scope', 'Profiles', 'Profile', function($scope, profiles, profile) {
         $scope.profiles = profiles;
         $scope.button = { value:"Back", href:"#/main_menu" };
-        $scope.select = function( profileId ){ profile.profileId = profileId; };
-        $scope.submit = function( profileId ){ alert( profileId ); };
+        
+        $scope.submit = function( profileName ){ profile.profileId = profileName; alert( profileName + " will be loaded." ); };
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
         alert( JSON.stringify(characterCards) );

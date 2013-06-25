@@ -4,13 +4,10 @@
 var initValue = window.localStorage.getItem( "init" );
 if( initValue === null )
 {
-    // default profile.
-    var defaultProfile = JSON.stringify( { "name":"_name", "value":"_value"} );
-    
     // initialize the starting profile slots.
-    window.localStorage.setItem( "profile1", defaultProfile );
-    window.localStorage.setItem( "profile2", defaultProfile );
-    window.localStorage.setItem( "profile3", defaultProfile );
+    window.localStorage.setItem( "Profile 1", JSON.stringify( { "name":"Profile 1", "value":"empty"} ) );
+    window.localStorage.setItem( "Profile 2", JSON.stringify( { "name":"Profile 2", "value":"empty"} ) );
+    window.localStorage.setItem( "Profile 3", JSON.stringify( { "name":"Profile 3", "value":"empty"} ) );
     
     window.localStorage.setItem( "init", "true" );
 }
