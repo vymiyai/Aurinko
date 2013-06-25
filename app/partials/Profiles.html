@@ -5,14 +5,13 @@
     
     <ul>
         <li ng-repeat="profile in profiles">
-            <form ng-submit="click(profile.value)">
-                <input ng-model="profileValue" type="hidden" value="wololo" />
+            <form ng-submit="select( profile.value )" action="#/escave_cinematics">
                 <input type="submit" value="{{profile.name}} : {{profile.value}}" />
             </form>
         </li>
     </ul>
     
-    <a href="{{bottomButton.link}}">{{bottomButton.label}}</a>
+    <a href="{{button.href}}">{{button.value}}</a>
     <br />
     <br />
     <a href="#/escave">GO TO ESCAVE</a>

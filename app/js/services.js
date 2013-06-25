@@ -11,10 +11,14 @@ angular.module('myApp.services', []).
     service('version3', function(){
         return {"wololo":"wololo"};
     }).
-    service('profiles', function(){
+    service('Profiles', function(){
         return [    {'name':'profile 1', 'value':'1'},
                     {'name':'profile 2', 'value':'2'},
                     {'name':'profile 3', 'value':'3'} ];
+    }).
+    service('Profile', function(){
+        var profileId = "0";
+        return { 'profileId': profileId };
     }).
     service( 'ProfileHandler', function(){
         // o unico profile que precisa estar disponivel em scope eh o que sera usado durante o jogo...

@@ -11,25 +11,17 @@ angular.module('myApp.controllers', [])
     }])
     .controller('NewGameController', [ '$scope', "ProfileHandler", function($scope, profileHandler) {
         $scope.profileHandler = profileHandler;
-        
-        
-        /*
-        window.localStorage.setItem("key", JSON.stringify( { "name":"_name", "value":"_value"} ) );
-        var value = window.localStorage.getItem("key");
-        alert( value );
-        window.localStorage.clear();
-        */
-        
-        
-        
-        $scope.click = function( profileValue ){ alert( "Will overwrite profile number " + profileValue ); };
-        $scope.bottomButton = {"link":"#/main_menu", "label":"Back"};
+        $scope.button = { value:"Back", href:"#/main_menu" };
     }])
-    .controller('LoadGameController', [ '$scope', 'profiles', function($scope, profiles) {
+    .controller('LoadGameController', [ '$scope', 'Profiles', 'Profile', function($scope, profiles, profile) {
         $scope.profiles = profiles;
-        $scope.click = function( profileValue ){ alert( "Will load profile number " + profileValue ); };
-        $scope.bottomButton = {"link":"#/main_menu", "label":"Back"};
+        $scope.button = { value:"Back", href:"#/main_menu" };
+        $scope.select = function( profileId ){ profile.profileId = profileId; };
+        $scope.submit = function( profileId ){ alert( profileId ); };
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
         alert( JSON.stringify(characterCards) );
+    }])
+    .controller('EscaveCinematicsController', [ '$scope', 'Profile', function( $scope, profile ) {
+        alert( profile.profileId );
     }]);

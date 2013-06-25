@@ -7,7 +7,8 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
     {
         // cinematic routes.
         $routeProvider.when('/escave_cinematics', 
-                            {   templateUrl:'partials/Cinematics.html' } );
+                            {   templateUrl:'partials/Cinematics.html', 
+                                controller: 'EscaveCinematicsController' } );
         $routeProvider.when('/ingame_cinematics', 
                             {   templateUrl:'partials/Cinematics.html' } );
         
