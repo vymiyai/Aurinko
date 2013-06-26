@@ -12,9 +12,11 @@ angular.module('myApp.services', []).
         return {"wololo":"wololo"};
     }).
     service('Profiles', function(){
-        return [    JSON.parse( window.localStorage.getItem( "Profile 1" ) ),
-                    JSON.parse( window.localStorage.getItem( "Profile 2" ) ),
-                    JSON.parse( window.localStorage.getItem( "Profile 3" ) ) ];
+        var profile1 = JSON.parse( window.localStorage.getItem( "Profile 1" ) );
+        var profile2 = JSON.parse( window.localStorage.getItem( "Profile 2" ) );
+        var profile3 = JSON.parse( window.localStorage.getItem( "Profile 3" ) );
+        
+        return [ profile1, profile2, profile3 ];
     }).
     service('Profile', function(){
         var profileId = "0";
@@ -38,6 +40,13 @@ angular.module('myApp.services', []).
                     }
                 };
     }).
+    service('Animations', [ '$location', function( $location ){
+        var hide = { getAnimation: function( element, callback ){ element.hide( 1000, callback ); } };
+        return hide;
+    } ] ).
+    
+    
+    
     service('CharacterCards', [ 'ItemCards', function( itemCards ){
         return {    'character1': {'name':'character 1', 'cards':[ itemCards["card1"] ]},
                     'character2': {'name':'character 2', 'cards':[ itemCards["card1"], itemCards["card2"] ]},

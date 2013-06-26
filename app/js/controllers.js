@@ -22,8 +22,23 @@ angular.module('myApp.controllers', [])
         $scope.submit = function( profileName ){ profile.profileId = profileName; alert( profileName + " will be loaded." ); };
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
-        alert( JSON.stringify(characterCards) );
+        //alert( JSON.stringify(characterCards) );
     }])
-    .controller('EscaveCinematicsController', [ '$scope', 'Profile', function( $scope, profile ) {
-        alert( profile.profileId );
+    .controller('EscaveCinematicsController', [ '$scope', 'Profile', '$location', function( $scope, profile, $location ) {
+        //alert( profile.profileId );
+        
+        // receber o json de profile, analisar qual animacao ser exibida (se necessario).
+        //getAnimation(profile)
+        
+        $scope.cinematic = "hide";
+        $scope.destination = "/escave";
+        
+        //hide( 500, function(){ alert("wololo"); $location.path( "/login" ); } ); 
+        //$scope.animate = animation.getAnimation( $location );
+        
+        // substituir o "onload" do elemento pela animacao (sequencia de operacoes em jquery)
+        
+        // ao final da animacao, invocar callback e redirecionar para escave.
+        
+        
     }]);
