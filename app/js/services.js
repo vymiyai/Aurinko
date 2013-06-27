@@ -36,8 +36,47 @@ angular.module('myApp.services', []).
                     }
                 };
     }).
-    service('Animations', [ '$location', function( $location ){
-        var hide = { getAnimation: function( element, callback ){ element.hide( 1000, callback ); } };
+    service('Animations', [ '$location', function( $location )
+    {
+        /*
+        var preloadImages = function( element, compositeCallback, callback )
+        {
+            var images = [ "img/pagetop.gif" ];
+            var loadedImages = {};
+            
+            var count = images.length;
+            
+            if( count === 0 ) 
+                compositeCallback( element, loadedImages, callback );
+                
+            var loaded = 0;
+            $( images )
+                .each( function() 
+                {
+                    loadedImages[ this ] = $( '<img>' )
+                        .attr( 'src', this )
+                        .attr( 'id', this )
+                        .load( function() 
+                        {
+                            loaded++;
+                            if ( loaded === count )
+                                compositeCallback( element, loadedImages, callback );
+                        });
+                });
+        };
+        */
+
+        var hideAnimation = function( element, callback )
+        {           
+            var compositeCallback = function( element, loadedImages, callback )
+            { 
+                $( loadedImages[ "img/pagetop.gif" ] ).appendTo( element ).hide( 2000, callback );
+            };
+            
+            preloadImages( element, compositeCallback, callback );
+        };
+        
+        var hide = { getAnimation: hideAnimation };
         return hide;
     } ] ).
     service('CharacterCards', [ 'ItemCards', function( itemCards ){
