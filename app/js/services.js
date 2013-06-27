@@ -7,10 +7,6 @@
 // In this case it is a simple value service.
 angular.module('myApp.services', []).
     value('version', '0.1').
-    value('version2', '0.2').
-    service('version3', function(){
-        return {"wololo":"wololo"};
-    }).
     service('Profiles', function(){
         var profile1 = JSON.parse( window.localStorage.getItem( "Profile 1" ) );
         var profile2 = JSON.parse( window.localStorage.getItem( "Profile 2" ) );
@@ -44,9 +40,6 @@ angular.module('myApp.services', []).
         var hide = { getAnimation: function( element, callback ){ element.hide( 1000, callback ); } };
         return hide;
     } ] ).
-    
-    
-    
     service('CharacterCards', [ 'ItemCards', function( itemCards ){
         return {    'character1': {'name':'character 1', 'cards':[ itemCards["card1"] ]},
                     'character2': {'name':'character 2', 'cards':[ itemCards["card1"], itemCards["card2"] ]},
