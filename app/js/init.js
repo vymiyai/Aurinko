@@ -13,4 +13,4 @@ if( initValue === null )
 }
 
 // fade in the main menu.
-//$( '#visible-area').ready( function(){ $( '#visible-area' ).fadeTo( 500, 1 ); } );
+$( '#visible-area').ready( function(){ $( '#visible-area' ).fadeTo( 1000, 1 ); } );

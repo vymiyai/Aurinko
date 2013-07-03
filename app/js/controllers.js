@@ -19,7 +19,10 @@ angular.module('myApp.controllers', [])
         $scope.profiles = profiles;
         $scope.button = { value:"Back", href:"#/main_menu" };
         
-        $scope.submit = function( profileName ){ profile.profileId = profileName; alert( profileName + " will be loaded." ); };
+        $scope.submit = function( profileName )
+        { 
+            profile.profileId = profileName;
+        };
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
         //alert( JSON.stringify(characterCards) );
