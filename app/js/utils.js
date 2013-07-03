@@ -1,8 +1,7 @@
 'use strict';
 
-function preloadImages( element, compositeCallback, callback )
+function preloadImages( element, images, compositeCallback, callback )
 {
-    var images = [ "img/pagetop.gif" ];
     var loadedImages = {};
             
     var count = images.length;

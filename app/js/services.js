@@ -67,13 +67,18 @@ angular.module('myApp.services', []).
         */
 
         var hideAnimation = function( element, callback )
-        {           
+        {   
+            // callback que define a logica da animacao.
             var compositeCallback = function( element, loadedImages, callback )
-            { 
-                $( loadedImages[ "img/pagetop.gif" ] ).appendTo( element ).hide( 2000, callback );
+            {
+                $( "#ajax-loader" ).remove();
+                $( loadedImages[ "img/pagetop.gif" ] ).appendTo( element ).fadeOut( 2000, callback );
             };
             
-            preloadImages( element, compositeCallback, callback );
+            // imagens a serem carregadas.
+            var images = [ "img/pagetop.gif" ];
+            
+            preloadImages( element, images, compositeCallback, callback );
         };
         
         var hide = { getAnimation: hideAnimation };
