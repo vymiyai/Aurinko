@@ -8,6 +8,8 @@ angular.module('myApp.controllers', [])
         $scope.buttons = [  { value:"New Game",   href:"#/new_game" },
                             { value:"Load Game",  href:"#/load_game" },
                             { value:"Quit",       href:"#" } ];
+                            
+        $scope.wololo = true;
     }])
     .controller('NewGameController', [ '$scope', "Profiles", "Profile", function( $scope, profiles, profile ) {
         $scope.profiles = profiles;

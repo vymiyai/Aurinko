@@ -11,6 +11,3 @@ if( initValue === null )
     
     window.localStorage.setItem( "init", "true" );
 }
-
-// fade in the main menu.
-//$( '#visible-area').ready( function(){ $( '#visible-area' ).fadeTo( 1000, 1 ); } );

@@ -19,21 +19,21 @@ angular.module('myApp.directives', [])
             });
         };
     }])
-    .directive( 'wrapper', function() {
+    .directive( 'wrapper', [ '$window', function( $window ) {
         return function( $scope, element, attributes ) {
             $scope.$watch( attributes.wrapper, function() {
 
                 // game visible area dimensions.
-                var w = $( '#visible-area' ).width();
-                var h = $( '#visible-area' ).height();
-            
+                var w = angular.element( document.querySelector( '#visible-area' ) ).prop('offsetWidth');
+                var h = angular.element( document.querySelector( '#visible-area' ) ).prop('offsetHeight');
+                
                 // complete visible area dimensions.
-                var sw = $( window ).width();
-                var sh = $( window ).height();
+                var sw = $window.innerWidth;
+                var sh = $window.innerHeight;
 
                 // set a defined dimension so that the wrapped elements' position can be calculated.
-                element.css( "height", sh );
-                element.css( "width", sw );
+                //element.css( "width", sw );
+                //element.css( "height", sh );
                 
                 // calculate zoom factor based on the limiting dimension.
                 var factor = 1.0;
@@ -42,9 +42,12 @@ angular.module('myApp.directives', [])
                 else
                     factor = sh/h;
                 
+                //alert( factor );
+                
                 // apply scaling.
-                $( '#visible-area' ).css( "transform", "scale( " + factor + " )" );
+                angular.element( document.querySelector( '#visible-area' ) ).css( "transform", "scale( " + factor + " )" );
+                
                 
             });
         };
-    });
+    }]);
