@@ -44,23 +44,7 @@ angular.module('myApp.directives', [])
                 
                 // apply scaling.
                 $( '#visible-area' ).css( "transform", "scale( " + factor + " )" );
-            });
-        };
-    })
-    // triggers the fade out effect on the visible-area.
-    .directive( 'fadeOutOnClick', function() {
-        return function( $scope, element, attributes ) {
-            $scope.$watch( attributes.fadeOutOnClick, function() {
                 
-                // create a callback that will redirect to $scope.destination.
-                var callback = function()
-                {
-                    $location.path( $scope.destination ); 
-                    $scope.$apply();
-                    $( '#visible-area' ).fadeIn( 0 );
-                };
-                
-                $( '#visible-area' ).fadeOut( 500, callback );
             });
         };
     });

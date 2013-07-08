@@ -1,6 +1,7 @@
 /* app css stylesheet */
 
-#visible-area {
+#visible-area 
+{
     background-color: gray;
     width: 320px;
     height: 480px;
@@ -9,11 +10,10 @@
     
     margin-left: auto;
     margin-right: auto;
+}
     
-    opacity: 0;
-    }
-    
-body {
+body 
+{
     background-color: black;
     overflow: hidden;
     padding: 0;
@@ -26,15 +26,78 @@ body {
     height: 100%;
 }
 
-.vertical-wrapper{
+.vertical-wrapper
+{
     width: 100%;
     height: 100%;
     display: table;
 }
 
-.horizontal-wrapper{
+.horizontal-wrapper
+{
     width: 100%;
     height: 100%;
     vertical-align: middle;
     display: table-cell;
+}
+
+
+
+
+/*
+
+.fade-hide, .fade-show 
+{
+  -webkit-transition:all linear 1.5s;
+  -moz-transition:all linear 1.5s;
+  -o-transition:all linear 1.5s;
+  transition:all linear 1.5s;
+}
+
+.fade-hide 
+{
+    opacity: 1;
+}
+
+.fade-hide.fade-hide-active 
+{
+    opacity: 0;
+}
+
+.fade-show
+{
+    opacity: 0;
+}
+
+.fade-show.fade-show-active 
+{
+    opacity: 1;
+}
+*/
+
+/* Put your css in here */
+.fade-show-setup.fade-show-start {
+    -webkit-transition: all linear 1s;
+    transition: all linear 1s;
+}
+
+.fade-show-setup {
+    opacity: 0;
+}
+
+.fade-show-setup.fade-show-start {
+    opacity: 1;
+}
+
+.fade-hide-setup.fade-hide-start {
+    -webkit-transition: all linear 1s;
+    transition: all linear 1s;
+}
+
+.fade-hide-setup {
+    opacity: 1;
+}
+
+.fade-hide-setup.fade-hide-start {
+    opacity: 0;
 }

@@ -13,7 +13,10 @@ angular.module('myApp.controllers', [])
         $scope.profiles = profiles;
         $scope.button = { value:"Back", href:"#/main_menu" };
         
-        $scope.submit = function( profileName ){ profile.profileId = profileName; alert( profileName + " will be overwritten." ); };
+        $scope.submit = function( profileName )
+        { 
+            profile.profileId = profileName;
+        };
     }])
     .controller('LoadGameController', [ '$scope', 'Profiles', 'Profile', function($scope, profiles, profile) {
         $scope.profiles = profiles;
@@ -26,6 +29,7 @@ angular.module('myApp.controllers', [])
     }])
     .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
         //alert( JSON.stringify(characterCards) );
+        $scope.hide = false;
     }])
     .controller('EscaveCinematicsController', [ '$scope', 'Profile', '$location', function( $scope, profile, $location ) {
         //alert( profile.profileId );
