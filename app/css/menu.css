@@ -1,4 +1,8 @@
-#visible-area 
+.selected
 {
-    background: gray;
+    background-color: gray;
+    width: inherit;
+    height: inherit;
 }
+
+

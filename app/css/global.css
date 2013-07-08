@@ -10,6 +10,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+
     
 html, body 
 {
@@ -25,7 +27,7 @@ html, body
     height: 100%;
 }
 
-.wrapper
+#wrapper
 {
     width: inherit; 
     height: inherit;
@@ -49,60 +51,37 @@ html, body
 
 
 
-/*
 
-.fade-hide, .fade-show 
-{
-  -webkit-transition:all linear 1.5s;
-  -moz-transition:all linear 1.5s;
-  -o-transition:all linear 1.5s;
-  transition:all linear 1.5s;
-}
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none;
+    }
 
-.fade-hide 
-{
-    opacity: 1;
-}
 
-.fade-hide.fade-hide-active 
-{
+
+
+
+    .animate-enter 
+    {
+    -webkit-transition: 1s linear all; /* Chrome */
+    transition: 1s linear all;
     opacity: 0;
-}
-
-.fade-show
-{
-    opacity: 0;
-}
-
-.fade-show.fade-show-active 
-{
+    }
+     
+    .animate-enter.animate-enter-active 
+    {
     opacity: 1;
-}
-*/
-
-/* Put your css in here */
-.fade-show-setup.fade-show-start {
-    -webkit-transition: all linear 1s;
-    transition: all linear 1s;
-}
-
-.fade-show-setup {
-    opacity: 0;
-}
-
-.fade-show-setup.fade-show-start {
+    }
+    
+    
+    
+    .animate-leave 
+    {
+    -webkit-transition: 1s linear all; /* Chrome */
+    transition: 1s linear all;
     opacity: 1;
-}
-
-.fade-hide-setup.fade-hide-start {
-    -webkit-transition: all linear 1s;
-    transition: all linear 1s;
-}
-
-.fade-hide-setup {
-    opacity: 1;
-}
-
-.fade-hide-setup.fade-hide-start {
+    }
+     
+    .animate-leave.animate-leave-active 
+    {
     opacity: 0;
-}
+    }
