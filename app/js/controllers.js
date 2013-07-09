@@ -12,6 +12,7 @@ angular.module('myApp.controllers', [])
         $scope.wololo = false;
         
         $scope.trololol = function (){ $scope.wololo = true; };
+
     }])
     .controller('NewGameController', [ '$scope', "Profiles", "Profile", function( $scope, profiles, profile ) {
         $scope.profiles = profiles;
