@@ -32,9 +32,12 @@ angular.module('myApp.controllers', [])
             profile.profileId = profileName;
         };
     }])
-    .controller('EscaveController', [ '$scope', 'CharacterCards', function( $scope, characterCards ) {
+    .controller('EscaveController', [ '$scope', '$q', '$http', function( $scope, $q, $http ) {
         //alert( JSON.stringify(characterCards) );
-        $scope.hide = false;
+
+        $q.all([ $http.get('img/koishi.jpg')
+            , $http.get('img/gensokyo.jpg') ]).then( function(results){ alert( "DONE" ); $scope.images = [ 'img/koishi.jpg', 'img/gensokyo.jpg' ]; }, function(){ alert( "!DONE" ); });
+
     }])
     .controller('EscaveCinematicsController', [ '$scope', 'Profile', '$location', function( $scope, profile, $location ) {
         //alert( profile.profileId );
