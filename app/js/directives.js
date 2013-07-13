@@ -7,7 +7,7 @@ angular.module('myApp.directives', [])
     .directive( 'cinematic', [ '$location', 'Animations', function( $location, animations ) {
         return function( $scope, element, attributes ) {
             $scope.$watch( attributes.cinematic, function() {
-                
+
                 // create a callback that will redirect to $scope.destination.
                 var callback = function()
                 {

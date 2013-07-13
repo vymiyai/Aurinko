@@ -36,25 +36,38 @@ angular.module('myApp.services', []).
                     }
                 };
     }).
-    service('Animations', [ '$location', function( $location )
+    service('Animations', [ 'Preloader', function( preloader )
     {
         var hideAnimation = function( element, callback )
         {   
-            // callback que define a logica da animacao.
-            var compositeCallback = function( element, loadedImages, callback )
-            {
-                $( "#ajax-loader" ).remove();
-                $( loadedImages[ "img/pagetop.gif" ] ).appendTo( element ).fadeOut( 2000, callback );
-            };
-            
             // imagens a serem carregadas.
             var images = [ "img/pagetop.gif", "img/koishi.jpg" ];
             
-            preloadImages( element, images, compositeCallback, callback );
+            //preloadImages( element, images, compositeCallback, callback );
+            preloader.preloadImages( images ).then( function(results){ $( "#ajax-loader" ).remove(); $( '<img src="img/pagetop.gif" />' ).appendTo( element ).fadeOut( 2000, callback ); } );
         };
         
         var hide = { getAnimation: hideAnimation };
         return hide;
+    } ] ).
+    factory('Preloader', [ '$q', '$http', function( $q, $http )
+    {
+        // objeto de retorno.
+        return {
+                // carrega imagens a partir de uma lista de urls.
+                preloadImages: function( images ){
+                    var promises = [];
+                    
+                    // para cada url, criar uma promise nova.
+                    for( var srcIndex = 0; srcIndex < images.length; srcIndex++ ){
+                        var url = images[ srcIndex ];
+                        promises.push( $http.get( url ) );
+                    }
+                
+                    // retorna as promises como uma promise unica.
+                    return $q.all( promises );
+                } 
+            };
     } ] ).
     service('CharacterCards', [ 'ItemCards', function( itemCards ){
         return {    'character1': {'name':'character 1', 'cards':[ itemCards["card1"] ]},

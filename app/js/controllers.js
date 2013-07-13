@@ -32,12 +32,10 @@ angular.module('myApp.controllers', [])
             profile.profileId = profileName;
         };
     }])
-    .controller('EscaveController', [ '$scope', '$q', '$http', function( $scope, $q, $http ) {
-        //alert( JSON.stringify(characterCards) );
-
-        $q.all([ $http.get('img/koishi.jpg')
-            , $http.get('img/gensokyo.jpg') ]).then( function(results){ alert( "DONE" ); $scope.images = [ 'img/koishi.jpg', 'img/gensokyo.jpg' ]; }, function(){ alert( "!DONE" ); });
-
+    .controller('EscaveController', [ '$scope', 'Preloader', function( $scope, preloader ) {
+        $scope.images = [ "img/koishi.jpg" ];
+        //var images = [ "img/pagetop.gif", "img/koishi.jpg", "img/gensokyo.jpg" ];
+        //preloader.preloadImages( images ).then( function(results){ $scope.images = images; }, function(){ alert( "Deu pau em alguma coisa!" ); } );
     }])
     .controller('EscaveCinematicsController', [ '$scope', 'Profile', '$location', function( $scope, profile, $location ) {
         //alert( profile.profileId );
@@ -47,6 +45,10 @@ angular.module('myApp.controllers', [])
         
         $scope.cinematic = "hide";
         $scope.destination = "/escave";
+        
+        
+        
+        
         
         //hide( 500, function(){ alert("wololo"); $location.path( "/login" ); } ); 
         //$scope.animate = animation.getAnimation( $location );
