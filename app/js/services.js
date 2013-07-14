@@ -36,7 +36,7 @@ angular.module('myApp.services', []).
                     }
                 };
     }).
-    service('Animations', [ 'Preloader', function( preloader )
+    service('Animations', [ 'PreloaderService', function( PreloaderService )
     {
         var hideAnimation = function( element, callback )
         {   
@@ -44,13 +44,13 @@ angular.module('myApp.services', []).
             var images = [ "img/pagetop.gif", "img/koishi.jpg" ];
             
             //preloadImages( element, images, compositeCallback, callback );
-            preloader.preloadImages( images ).then( function(results){ $( "#ajax-loader" ).remove(); $( '<img src="img/pagetop.gif" />' ).appendTo( element ).fadeOut( 2000, callback ); } );
+            PreloaderService.preloadImages( images ).then( function(results){ $( "#ajax-loader" ).remove(); $( '<img src="img/pagetop.gif" />' ).appendTo( element ).fadeOut( 2000, callback ); } );
         };
         
         var hide = { getAnimation: hideAnimation };
         return hide;
     } ] ).
-    factory('Preloader', [ '$q', '$http', function( $q, $http )
+    factory( 'PreloaderService', [ '$q', '$http', function( $q, $http )
     {
         // objeto de retorno.
         return {

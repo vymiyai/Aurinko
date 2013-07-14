@@ -14,25 +14,7 @@ angular.module('myApp.controllers', [])
         $scope.trololol = function (){ $scope.wololo = true; };
 
     }])
-    .controller('NewGameController', [ '$scope', "Profiles", "Profile", function( $scope, profiles, profile ) {
-        $scope.profiles = profiles;
-        $scope.button = { value:"Back", href:"#/main_menu" };
-        
-        $scope.submit = function( profileName )
-        { 
-            profile.profileId = profileName;
-        };
-    }])
-    .controller('LoadGameController', [ '$scope', 'Profiles', 'Profile', function($scope, profiles, profile) {
-        $scope.profiles = profiles;
-        $scope.button = { value:"Back", href:"#/main_menu" };
-        
-        $scope.submit = function( profileName )
-        { 
-            profile.profileId = profileName;
-        };
-    }])
-    .controller('EscaveController', [ '$scope', 'Preloader', function( $scope, preloader ) {
+    .controller('EscaveController', [ '$scope', 'PreloaderService', function( $scope, PreloaderService ) {
         $scope.images = [ "img/koishi.jpg" ];
         //var images = [ "img/pagetop.gif", "img/koishi.jpg", "img/gensokyo.jpg" ];
         //preloader.preloadImages( images ).then( function(results){ $scope.images = images; }, function(){ alert( "Deu pau em alguma coisa!" ); } );
