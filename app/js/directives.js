@@ -24,13 +24,21 @@ angular.module('myApp.directives', [])
             $scope.$watch( attributes.wrapper, function() {
 
                 // game visible area dimensions.
+                /*
                 var w = angular.element( document.querySelector( '#visible-area' ) ).prop('offsetWidth');
                 var h = angular.element( document.querySelector( '#visible-area' ) ).prop('offsetHeight');
+                */
+                var w = $('#visible-area').width();
+                var h = $('#visible-area').height();
                 
                 // complete visible area dimensions.
+                /*
                 var sw = $window.innerWidth;
                 var sh = $window.innerHeight;
-
+                */
+                var sw = $( 'body' ).width();
+                var sh = $( 'body' ).height();
+                
                 // set a defined dimension so that the wrapped elements' position can be calculated.
                 //element.css( "width", sw );
                 //element.css( "height", sh );
@@ -45,7 +53,8 @@ angular.module('myApp.directives', [])
                 //alert( factor );
                 
                 // apply scaling.
-                angular.element( document.querySelector( '#visible-area' ) ).css( "transform", "scale( " + factor + " )" );
+                //angular.element( document.querySelector( '#visible-area' ) ).css( "transform", "scale( " + factor + " )" );
+                $( '#visible-area' ).css( "transform", "scale( " + factor + " )" );
                 
                 
             });

@@ -89,6 +89,3 @@ angular.module('myApp.services', []).
                     "Scope": {'name':'Scope', 'description':'Rifles\' accuracy becomes 100%, rate of fire is halved.'},
                     "Camouflage": {'name':'Camouflage', 'description':'Reduces hit chances by 10%.'} };
     });
-    
-    
-    

@@ -6,8 +6,14 @@
     <!-- link para DESTINATION HUB... -->
     <!-- link para INGAME MENU... -->
     
+    <ul>
+        <li ng-repeat="button in buttons" ng-animate=" 'animate' ">
+            <a href="{{button.href}}">{{button.value}}</a>
+        </li>
+    </ul>
+    
     <div ng-repeat="image in images">
-        <img style="height: 100px" ng-src="{{image}}" />
+        <img style="height: 200px" ng-src="{{image}}" />
     </div>
 </div>
 

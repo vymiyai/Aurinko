@@ -48,4 +48,37 @@ angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 
         
         // default route.
         $routeProvider.otherwise( {redirectTo:  '/main_menu' } );
-    }]);
+    }])
+    .animation('animate-enter', function() {
+        return {
+            setup : function(myElement) {
+                myElement.css({ 'opacity': 0 });
+                return {}; //if you want to share some dat between the set and start return it it can be anything
+            },
+            start : function(myElement, done, data) {
+                myElement.delay( 250 )
+                    .animate({
+                        'opacity' : 1
+                    }, 250, function() {
+                        done()
+                    });
+                }
+            
+        }
+    })    
+    .animation('animate-leave', function() {
+        return {
+            setup : function(myElement) {
+                myElement.css({ 'opacity': 1 });
+                return {}; //if you want to share some dat between the set and start return it it can be anything
+            },
+            start : function(myElement, done, data) {
+                myElement.animate({
+                        'opacity' : 0
+                    }, 250, function() {
+                        done()
+                    });
+                }
+            
+        }
+    });
