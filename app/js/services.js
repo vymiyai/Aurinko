@@ -15,8 +15,9 @@ angular.module('myApp.services', []).
         return [ profile1, profile2, profile3 ];
     }).
     service('Profile', function(){
-        var profileId = "0";
-        return { 'profileId': profileId };
+        var profileId   = "0";
+        var varTable    = {};
+        return { 'profileId': profileId, 'varTable': varTable };
     }).
     service( 'ProfileHandler', function(){
         // o unico profile que precisa estar disponivel em scope eh o que sera usado durante o jogo...
@@ -68,6 +69,14 @@ angular.module('myApp.services', []).
                     return $q.all( promises );
                 } 
             };
+    } ] ).
+    service('EventProvider', [ 'Profile', function( Profile ){
+        
+        var eventList = {
+    
+        };
+        
+        return {    'getEventByName': function( eventName ){ return eventList[ eventName ]; } };
     } ] ).
     service('CharacterCards', [ 'ItemCards', function( itemCards ){
         return {    'character1': {'name':'character 1', 'cards':[ itemCards["card1"] ]},

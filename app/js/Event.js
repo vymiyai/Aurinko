@@ -1,6 +1,6 @@
 'use strict';    
 
-
+// defines a game event object with preconditions.
 var Event = function( Profile )
 {
     this.name           = "Event";
