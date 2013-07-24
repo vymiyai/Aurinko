@@ -3,13 +3,15 @@
 // defines an item object with container capabilities.
 var Item = function( data )
 {
-    // attributes.______________________________________________________________
+    //__________________________________________________________________________
+    // attributes.
     
     this.data           = data;
     this.elements       = [];
     this.currentBulk    = 0;
     
-    // data getters.____________________________________________________________
+    //__________________________________________________________________________
+    // data getters.
     
     // returns the item's name.
     this.getItemName = function()
@@ -53,7 +55,8 @@ var Item = function( data )
         return this.data.accepts.types;
     };
     
-    // utility methods._________________________________________________________
+    //__________________________________________________________________________
+    // utility methods.
     
     // checks if an item is accepted by this one.
     this.isItemAccepted = function( item )
@@ -72,11 +75,42 @@ var Item = function( data )
     {
         return this.elements.length;
     };
+
+    //__________________________________________________________________________
+    // CRUD methods. Exceptions should be handled by the caller.
     
-    // puts an item in this item's elements.
-    // returns true if successful, false otherwise.
+    // equivalent to CRUD-READ.
+    this.getItem = function( itemIndex )
+    {
+        return this.elements[ index ];
+    };
+
+    // equivalent to CRUD-CREATE.
     this.putItem = function( item )
     {
+        // PRECISA CONSIDERAR A SITUACAO ONDE O ITEM JA EXISTE E DEVE SER STACKEADO.
+        // COGITAR COLOCAR UM CAMPO "MAXIMUM STACKABLE" EM CADA CHAVE DE "accepts".
+        //
+        //  ITEM_INSTANCE->slot(accepts: weapon, clip)
+        //  [
+        //      ITEM_INSTANCE->weapon(accepts: clip)
+        //      [
+        //          
+        //      ]
+        //  ]
+        //
+        //  ITEM_INSTANCE->slot(accepts: weapon, clip)
+        //  [
+        //      ITEM_INSTANCE->clip(accepts: ammo)
+        //      [
+        //          ITEM_INSTANCE->ammo(accepts:)
+        //          ITEM_INSTANCE->ammo(accepts:)
+        //          ITEM_INSTANCE->ammo(accepts:)
+        //          ITEM_INSTANCE->ammo(accepts:)
+        //          ITEM_INSTANCE->ammo(accepts:)
+        //      ]
+        //  ]
+        
         // retrieve the new item's bulk.
         var newItemBulk = item.getItemBulk();
         
@@ -97,6 +131,19 @@ var Item = function( data )
         
     };
     
+    // equivalent to CRUD-UPDATE.
+    this.postItem = function( itemIndex )
+    {
+        
+    };
+
+    // equivalent to CRUD-DELETE.
+    this.deleteItem = function( itemIndex )
+    {
+        // delete without returning.
+        array.splice( itemIndex, 1 );
+    };
+    
     // UNDER DEVELOPMENT._______________________________________________________
     
     // returns the item in the index position.
@@ -112,13 +159,6 @@ var Item = function( data )
             // the index is out of range.
             return null;
         }
-    };
-    
-    // deletes the item in the index position.
-    // returns true if successful, false otherwise.
-    this.deleteItem = function( index )
-    {
-        
     };
     
     this.useItem = function()

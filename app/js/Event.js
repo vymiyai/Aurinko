@@ -21,7 +21,7 @@ var Event = function( Profile )
         }
         else
         {
-            // this is a leaf condition. resolve expression and return.            
+            // this is a leaf condition. resolve expression and return.
             if( this.preconditions.length === 0 )
             {
                 // return false in case of expression failure.

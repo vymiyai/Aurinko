@@ -130,7 +130,6 @@ describe('Item', function() {
             // should fail.
             expect( karabiner_98.putItem( mauserClips[ 2 ] ) ).toEqual( false );
             
-            
             // shove the Karabiner, and the two clips into a box object.
             var item_box = new Item( box );
             expect( item_box.putItem( karabiner_98 ) ).toEqual( true );
