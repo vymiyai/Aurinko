@@ -9,33 +9,33 @@ describe('Item', function() {
         name: "Karabiner 98k",
         type: "weapon",
         bulk: 3,
-        maximumStackableBulk: 3,
-        capacityBulk: 0.5,
-        accepts: {names: ["8mm Mauser Clip"], types: []} };
+        maximumStackable: 1,
+        capacityBulk: 1,
+        accepts: {names: {"8mm Mauser Clip":1}, types: {}} };
     
     var clip_mauser_8mm = {
         name: "8mm Mauser Clip",
         type: "clip",
-        bulk: 0.5,
-        maximumStackableBulk: 1,
-        capacityBulk: 0.25,
-        accepts: {names: ["8mm Mauser"], types: []} };
+        bulk: 1,
+        maximumStackable: 1,
+        capacityBulk: 1,
+        accepts: {names: {"8mm Mauser":5}, types: {}} };
     
     var ammo_mauser_8mm = {
         name: "8mm Mauser",
         type: "ammo",
-        bulk: 0.05,
-        maximumStackableBulk: 1,
+        bulk: 1,
+        maximumStackable: 20,
         capacityBulk: 0,
-        accepts: {names: [], types: []} };
+        accepts: {names: {}, types: {}} };
     
     var box = {
         name: "box",
         type: "container",
-        bulk: 2,
-        maximumStackableBulk: 2,
-        capacityBulk: 4,
-        accepts: {names: [], types: ["weapon", "clip", "ammo"]} };
+        bulk: 1,
+        maximumStackable: 1,
+        capacityBulk: 5,
+        accepts: {names: {}, types: {"weapon":5, "clip":5, "ammo":5}} };
     
   
     it( 'should test the constructor and the getters.', inject( function(){
@@ -46,8 +46,6 @@ describe('Item', function() {
         expect( item.getItemName() ).toEqual( weapon_karabiner_98.name );
         expect( item.getItemType() ).toEqual( weapon_karabiner_98.type );
         expect( item.getItemBulk() ).toEqual( weapon_karabiner_98.bulk );
-        expect( item.getItemMaximumStackableBulk() ).toEqual( weapon_karabiner_98.maximumStackableBulk );
-        expect( item.getItemCapacityBulk() ).toEqual( weapon_karabiner_98.capacityBulk );
         expect( item.getItemAcceptsNames() ).toEqual( weapon_karabiner_98.accepts.names );
         expect( item.getItemAcceptsTypes() ).toEqual( weapon_karabiner_98.accepts.types );
     }));
@@ -74,29 +72,34 @@ describe('Item', function() {
     });
     
     describe( "Item.putItem by name", function(){
-        it( 'should load 5 8mm mauser bullets successfully and fail on the 6th.', function(){
-            // load a mauser clip with 1/5 bullets.
-            var mauserClip  = new Item( clip_mauser_8mm );
-            var mauserAmmo  = new Item( ammo_mauser_8mm );
-            expect( mauserClip.putItem( mauserAmmo ) ).toEqual( true );
-            
-            // load a mauser clip with 4/5 bullets.
-            for( var i = 0; i < 3; i++ )
+        
+        // instantiate a new mauser clip for this scope.
+        var mauserClip  = new Item( clip_mauser_8mm );
+        
+        it( 'should load 5 8mm mauser bullets successfully in a clip.', function(){
+            // load the mauser clip.
+            for( var i = 0; i < 5; i++ )
             {
-                mauserAmmo  = new Item( ammo_mauser_8mm );
+                var mauserAmmo  = new Item( ammo_mauser_8mm );
                 expect( mauserClip.putItem( mauserAmmo ) ).toEqual( true );
             }
-            
-            // load a mauser clip with 5/5 bullets.
-            mauserAmmo  = new Item( ammo_mauser_8mm );
-            expect( mauserClip.putItem( mauserAmmo ) ).toEqual( true );
-            
-            // try to load 6/5 bullets. should fail.
-            mauserAmmo  = new Item( ammo_mauser_8mm );
+        });
+        
+        it( 'should return false when loading a 6th 8mm mauser bullet in a clip.', function(){
+            var mauserAmmo  = new Item( ammo_mauser_8mm );
             expect( mauserClip.putItem( mauserAmmo ) ).toEqual( false );
         });
+        
+        it( 'should check the number of elements (item instances) in the clip.', function(){
+            expect( mauserClip.countElements() ).toEqual( 1 );
+        });
+        
+        it( 'should check if the sole element is a clip item with quantity equal to 5.', function(){
+            expect( mauserClip.getItem( 0 ).getQuantity() ).toEqual( 5 );
+        });
+        
     });
-    
+    /*
     describe( "Item.putItem by type", function(){
         it( 'should load a Karabiner 98k with a fully loaded clip and 2 other clips, one of them with one bullet, in a box item. should fail when trying to add a single bullet', function(){
             // instantiate 3 ammo clips.
@@ -141,5 +144,5 @@ describe('Item', function() {
             expect( item_box.putItem( mauserAmmo ) ).toEqual( false );
         });
     });
-    
+    */
 });

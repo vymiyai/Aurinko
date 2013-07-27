@@ -8,6 +8,7 @@ var Item = function( data )
     
     this.data           = data;
     this.elements       = [];
+    this.quantity       = 1;
     this.currentBulk    = 0;
     
     //__________________________________________________________________________
@@ -31,17 +32,17 @@ var Item = function( data )
         return this.data.bulk;
     };
     
-    // returns the item's maximum stackable bulk.
-    this.getItemMaximumStackableBulk = function()
+    // returns the item's maximum stackable quantity.
+    this.getItemMaximumStackable = function()
     {
-        return this.data.maximumStackableBulk;
+        return this.data.maximumStackable;
     };
     
     // returns the item's capacity bulk.
     this.getItemCapacityBulk = function()
     {
         return this.data.capacityBulk;
-    };
+    }
     
     // returns the item's accepts' name array.
     this.getItemAcceptsNames = function()
@@ -58,11 +59,11 @@ var Item = function( data )
     //__________________________________________________________________________
     // utility methods.
     
-    // checks if an item is accepted by this one.
+    // checks if this item accepts another item.
     this.isItemAccepted = function( item )
     {
-        var nameAccepted = this.getItemAcceptsNames().indexOf( item.getItemName() ) > -1;
-        var typeAccepted = this.getItemAcceptsTypes().indexOf( item.getItemType() ) > -1;
+        var nameAccepted = item.getItemName() in this.getItemAcceptsNames();
+        var typeAccepted = item.getItemType() in this.getItemAcceptsTypes();
     
         if( nameAccepted || typeAccepted )
             return true
@@ -70,10 +71,22 @@ var Item = function( data )
             return false
     };
     
-    // returns the item's elements array's length.
+    // returns this item's elements array's length.
     this.countElements = function()
     {
         return this.elements.length;
+    };
+    
+    // returns this item's number of identical item.
+    this.getQuantity = function()
+    {
+        return this.quantity;
+    };
+    
+    // sets this item's number of identical items.
+    this.setQuantity = function( qtd )
+    {
+        this.quantity = qtd;
     };
 
     //__________________________________________________________________________
@@ -82,50 +95,55 @@ var Item = function( data )
     // equivalent to CRUD-READ.
     this.getItem = function( itemIndex )
     {
-        return this.elements[ index ];
+        return this.elements[ itemIndex ];
     };
 
     // equivalent to CRUD-CREATE.
     this.putItem = function( item )
     {
-        // PRECISA CONSIDERAR A SITUACAO ONDE O ITEM JA EXISTE E DEVE SER STACKEADO.
-        // COGITAR COLOCAR UM CAMPO "MAXIMUM STACKABLE" EM CADA CHAVE DE "accepts".
-        //
-        //  ITEM_INSTANCE->slot(accepts: weapon, clip)
-        //  [
-        //      ITEM_INSTANCE->weapon(accepts: clip)
-        //      [
-        //          
-        //      ]
-        //  ]
-        //
-        //  ITEM_INSTANCE->slot(accepts: weapon, clip)
-        //  [
-        //      ITEM_INSTANCE->clip(accepts: ammo)
-        //      [
-        //          ITEM_INSTANCE->ammo(accepts:)
-        //          ITEM_INSTANCE->ammo(accepts:)
-        //          ITEM_INSTANCE->ammo(accepts:)
-        //          ITEM_INSTANCE->ammo(accepts:)
-        //          ITEM_INSTANCE->ammo(accepts:)
-        //      ]
-        //  ]
+        // assume that the item can be put...
         
-        // retrieve the new item's bulk.
-        var newItemBulk = item.getItemBulk();
-        
-        // add an item to this item's elements array if the resulting current 
-        // bulk is lower than this item's capacity bulk.
-        if( this.currentBulk + newItemBulk <= this.getItemCapacityBulk() )
+        // check if the item already exists in the container's elements.
+        for( var index = 0; index < this.countElements(); index++ )
         {
-            // add item, calculate new current bulk and return.
+            var storedItem = this.getItem( index );
+            if( storedItem.getItemName() === item.getItemName() )
+            {
+                // the item exists. try to stack it if stackable.
+                var quantity = storedItem.getQuantity() + item.getQuantity();
+                //if( quantity <= storedItem.getItemMaximumStackable() )
+                if( quantity <= this.getItemAcceptsNames()[ item.getItemName() ] )
+                {
+                    // the items can be stacked.
+                    
+                    this.elements[ index ].setQuantity( quantity );
+                    return true;
+                }
+                else
+                {
+                    // do nothing. keep searching for an item with the same name.
+                    // what happens when 10 + 11 = 20 + 1
+                }
+            }
+            else
+            {
+                // do nothing. try to create a new slot for the item.
+            }
+        }
+        
+        // the item doesn't exist yet.
+
+        // check if there is enough space to store the new item.
+        if( this.currentBulk + item.getItemBulk() <= this.getItemCapacityBulk() )
+        {
+            // there is enough bulk capacity to store the new item.
             this.elements.push( item );
-            this.currentBulk = this.currentBulk +  newItemBulk;
+            this.currentBulk += item.getItemBulk();
             return true;
         }
         else
         {
-            // current bulk exceeds capacity bulk.
+            // there is not enough capacity bulk to store the new item.
             return false;
         }
         
