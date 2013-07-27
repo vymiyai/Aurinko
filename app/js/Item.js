@@ -32,12 +32,6 @@ var Item = function( data )
         return this.data.bulk;
     };
     
-    // returns the item's maximum stackable quantity.
-    this.getItemMaximumStackable = function()
-    {
-        return this.data.maximumStackable;
-    };
-    
     // returns the item's capacity bulk.
     this.getItemCapacityBulk = function()
     {
@@ -111,7 +105,6 @@ var Item = function( data )
             {
                 // the item exists. try to stack it if stackable.
                 var quantity = storedItem.getQuantity() + item.getQuantity();
-                //if( quantity <= storedItem.getItemMaximumStackable() )
                 if( quantity <= this.getItemAcceptsNames()[ item.getItemName() ] )
                 {
                     // the items can be stacked.

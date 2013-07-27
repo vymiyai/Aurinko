@@ -9,7 +9,6 @@ describe('Item', function() {
         name: "Karabiner 98k",
         type: "weapon",
         bulk: 3,
-        maximumStackable: 1,
         capacityBulk: 1,
         accepts: {names: {"8mm Mauser Clip":1}, types: {}} };
     
@@ -17,7 +16,6 @@ describe('Item', function() {
         name: "8mm Mauser Clip",
         type: "clip",
         bulk: 1,
-        maximumStackable: 1,
         capacityBulk: 1,
         accepts: {names: {"8mm Mauser":5}, types: {}} };
     
@@ -25,7 +23,6 @@ describe('Item', function() {
         name: "8mm Mauser",
         type: "ammo",
         bulk: 1,
-        maximumStackable: 20,
         capacityBulk: 0,
         accepts: {names: {}, types: {}} };
     
@@ -33,7 +30,6 @@ describe('Item', function() {
         name: "box",
         type: "container",
         bulk: 1,
-        maximumStackable: 1,
         capacityBulk: 5,
         accepts: {names: {}, types: {"weapon":5, "clip":5, "ammo":5}} };
     
